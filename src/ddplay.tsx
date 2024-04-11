@@ -76,34 +76,34 @@ export default function Home({}: { path?: string; default?: boolean }) {
 
     return [payload, data];
   };
-  type Comment = {
-    text: string;
-    time: number;
-    color: string;
-    border: boolean;
-    mode: 0 | 1;
-  };
-  const fetchComments = async (episodeId: string): Promise<Comment[]> => {
-    const url = `${cfg?.dd?.api}/api/v2/comment/${episodeId}?withRelated=true&chConvert=1`;
+  // type Comment = {
+  //   text: string;
+  //   time: number;
+  //   color: string;
+  //   border: boolean;
+  //   mode: 0 | 1;
+  // };
+  // const fetchComments = async (episodeId: string): Promise<Comment[]> => {
+  //   const url = `${cfg?.dd?.api}/api/v2/comment/${episodeId}?withRelated=true&chConvert=1`;
 
-    const response = await fetch(url);
-    const data = await response.json();
+  //   const response = await fetch(url);
+  //   const data = await response.json();
 
-    const comments: Comment[] = [];
-    for (const comment of data.comments) {
-      const params = comment.p.split(",");
+  //   const comments: Comment[] = [];
+  //   for (const comment of data.comments) {
+  //     const params = comment.p.split(",");
 
-      comments.push({
-        text: comment.m,
-        time: parseInt(params[0]),
-        color: params[2],
-        border: false,
-        mode: 0,
-      });
-    }
+  //     comments.push({
+  //       text: comment.m,
+  //       time: parseInt(params[0]),
+  //       color: params[2],
+  //       border: false,
+  //       mode: 0,
+  //     });
+  //   }
 
-    return comments;
-  };
+  //   return comments;
+  // };
 
   const load = async () => {
     const ffmpeg = ffmpegRef.current;
@@ -125,11 +125,11 @@ export default function Home({}: { path?: string; default?: boolean }) {
     console.log(ffmpeg);
   };
 
-  const fInfo = async (url: File) => {
-    const ffmpeg = ffmpegRef.current;
-    await ffmpeg.writeFile("input.mkv", await fetchFile(url));
-    console.log(await ffmpeg.exec(["-i", "input.mkv"]));
-  };
+  // const fInfo = async (url: File) => {
+  //   const ffmpeg = ffmpegRef.current;
+  //   await ffmpeg.writeFile("input.mkv", await fetchFile(url));
+  //   console.log(await ffmpeg.exec(["-i", "input.mkv"]));
+  // };
 
   const fSub = async (url: File) => {
     const ffmpeg = ffmpegRef.current;
